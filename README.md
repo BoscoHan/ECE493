@@ -40,7 +40,9 @@ We will look at your definition and implmentation which should match the descrip
 
 
 
-## Installation (guide for Linux and OSX, for Windows please look online for instructions)
+## Installation (guide for Linux and OSX, for Windows please look online for instructions for the respective packages indicated here)
+
+You need a version of python that is > 3.5 and < 3.8 installed in your machine. If you have other versions installed, you can have parallel installations, but use the python between 3.5 and 3.8.   
 
 First clone the repo, 
 
@@ -49,9 +51,15 @@ git clone https://github.com/hardmaru/slimevolleygym.git
 cd slimevolleygym
 sudo pip3 install -e .
 pip3 install opencv-python
-pip3 install stable_baselines
+sudo apt-get update && sudo apt-get install cmake libopenmpi-dev python3-dev zlib1g-dev (for ubuntu)
+brew install cmake openmpi (for OSX)
+pip3 install 'stable-baselines[mpi]'
+pip3 install tensorflow==1.15
 pip3 install gym
 ```
+
+Note that tensorflow < 1.15 is needed for stable baselines as it does not support tensorflow 2.0 yet.
+
 After cloning and installing all the packages, you can run the ``test_state.py`` file to play the game manually against the baseline agent. You can use the arrow keys and you will control the right agent. 
 
 ## Environments
@@ -62,7 +70,7 @@ There are two types of environments: state-space observation or pixel observatio
 This assignment will focus on the single-agent version where you will train an agent to compete against the baseline agent. You can also use the multi-agent version to compare the performances of your agents against those of your classmates. This is optional and is only for fun. Several baselines that you can try are mentioned in the ``Training.md`` file. To run the multiagent version run the following command 
 
 ```
-python eval_agents.py --left ppo --right cma
+python3 eval_agents.py --left ppo --right cma --render
 ``` 
 
 
