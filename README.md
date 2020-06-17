@@ -18,7 +18,7 @@ SlimeVolleyGym is a simple gym environment for testing Reinforcement Leanring al
 
 This assignment will have a written component and a programming component.
 Clone the slimevolleygym environment locally and run the code looking at the implemtation of the sample algorithm.
-Implementation of PPO (using stable baselines package) is given in the codebase. Refer to file ``slimevolleygym/training_scripts/train_ppo.py`` to see an example of how this training happens, here the training is against a baseline RNN policy that controls the left agent (This baseline policy is already learned and is not learning anymore) . Your task is to use an RL algorithm to control the right agent.   
+Implementation of PPO (using stable baselines package) is given in the codebase. Refer to file ``/training_scripts/train_ppo.py`` to see an example of how this training happens, here the training is against a baseline RNN policy that controls the left agent (This baseline policy is already learned and is not learning anymore) . Your task is to use an RL algorithm to control the right agent.   
 
 Similarly this assignment will expect you to train several other RL algorithms that we have listed below. You need not implement these RL algorithms by hand. We suggest that you use the [stable baselines] (https://github.com/hill-a/stable-baselines) package as done in the example ``train_ppo.py`` script. Feel free to play with the hyperparameters to arrive at the best one. In the report highlight the steps you tried to find the best hyperparameter for all the algorithms. 
 
