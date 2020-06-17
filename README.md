@@ -45,8 +45,10 @@ git clone https://github.com/hardmaru/slimevolleygym.git
 cd slimevolleygym
 sudo pip3 install -e .
 pip3 install opencv-python
+pip3 install stable_baselines
+pip3 install gym
 ```
-
+After cloning and installing all the packages, you can run the ``test_state.py`` file to play the game manually against the baseline agent. You can use the arrow keys and you will control the right agent. 
 
 ## Environments
 
