@@ -18,7 +18,11 @@ SlimeVolleyGym is a simple gym environment for testing Reinforcement Leanring al
 
 This assignment will have a written component and a programming component.
 Clone the slimevolleygym environment locally and run the code looking at the implemtation of the sample algorithm.
-Implementation of PPO (using stable baselines package) is given in the codebase.
+Implementation of PPO (using stable baselines package) is given in the codebase. Refer to file ``slimevolleygym/training_scripts/train_ppo.py`` to see an example of how this training happens, here the training is against a baseline RNN policy that controls the left agent (This baseline policy is already learned and is not learning anymore) . Your task is to use an RL algorithm to control the right agent.   
+
+Similarly this assignment will expect you to train several other RL algorithms that we have listed below. You need not implement these RL algorithms by hand. We suggest that you use the [stable baselines] (https://github.com/hill-a/stable-baselines) package as done in the example ``train_ppo.py`` script. Feel free to play with the hyperparameters to arrive at the best one. In the report highlight the steps you tried to find the best hyperparameter for all the algorithms. 
+
+
 Your task is to implement three algortihms on this domain.
 - **(20%)** Implement DQN
 - **(20%)** Implement A2C
@@ -52,10 +56,17 @@ After cloning and installing all the packages, you can run the ``test_state.py``
 
 ## Environments
 
-There are two types of environments: state-space observation or pixel observations for the slimevolleygym environment. We will only be using the state-space observation for this Assignment. This environment is labelled as `SlimeVolleyPixel-v0`. Look at the original repo and familiarize yourself with the state space, action space and the reward function. 
+There are two types of environments: state-space observation or pixel observations for the slimevolleygym environment. We will only be using the state-space observation for this Assignment. This environment is labelled as `SlimeVolley-v0`. Look at the original repo and familiarize yourself with the state space, action space and the reward function. 
 
 
-This assignment will focus on the single-agent version where you will train an agent to compete against the baseline agent. You can also use the multi-agent version to compare the performances of your agents against those of your classmates. This is optional and is only for fun. 
+This assignment will focus on the single-agent version where you will train an agent to compete against the baseline agent. You can also use the multi-agent version to compare the performances of your agents against those of your classmates. This is optional and is only for fun. Several baselines that you can try are mentioned in the ``Training.md`` file. To run the multiagent version run the following command 
+
+```
+python eval_agents.py --left ppo --right cma
+``` 
+
+
+Look at the ``eval_agents.py`` file to understand how the multiagent competition happens. You can replace the algorithms ``ppo`` and ``cma`` with the policies of you and your classmates to have a fun comparison. 
 
  
 
