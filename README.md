@@ -62,6 +62,8 @@ Note that tensorflow < 1.15 is needed for stable baselines as it does not suppor
 
 After cloning and installing all the packages, you can run the ``test_state.py`` file to play the game manually against the baseline agent. You can use the arrow keys and you will control the right agent. 
 
+Note: Stable baselines is just a suggestion. There are other RL packages out with different deep learning libraries that can also be tried. 
+
 ## Environments
 
 There are two types of environments: state-space observation or pixel observations for the slimevolleygym environment. We will only be using the state-space observation for this Assignment. This environment is labelled as `SlimeVolley-v0`. Look at the original repo and familiarize yourself with the state space, action space and the reward function. 
