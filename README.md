@@ -30,6 +30,7 @@ Your task is to implement three algortihms on this domain.
 - **(40%)** Report : Write a short report on the problem and the results of your three algorithms. The report should be submited on LEARN as a pdf. 
     - Describing each algorithm you used, define the states, actions, dynamics. Define the mathematical formulation of your algorithm, show the Bellman updates for you use.
     - Some quantitative analysis of the results, a default plot for comparing all algorithms is given. You can do more than that.
+    - Clearly mention the hyperparameters used and the steps that you took to arrive at this value. 
     - Some qualitative analysis of why one algorithm works well in each case, what you noticed along the way.
 
 
