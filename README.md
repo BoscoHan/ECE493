@@ -52,7 +52,7 @@ Please follow instructions [here](https://docs.anaconda.com/anaconda/install/)
 ```
 #clone the repo
 git clone https://git.uwaterloo.ca/mcrowley/ece493finalassignment.git
-cd slimevolleygym
+cd ece493finalassignment
 
 #setup and activate environment
 sudo apt-get update && sudo apt-get install cmake libopenmpi-dev python3-dev zlib1g-dev (for ubuntu)
