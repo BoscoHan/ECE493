@@ -48,15 +48,19 @@ You need a version of python that is > 3.5 and < 3.8 installed in your machine. 
 First clone the repo, 
 
 ```
-git clone https://github.com/hardmaru/slimevolleygym.git
-cd slimevolleygym
-sudo pip3 install -e .
-pip3 install opencv-python
+#setup and activate environment
 sudo apt-get update && sudo apt-get install cmake libopenmpi-dev python3-dev zlib1g-dev (for ubuntu)
 brew install cmake openmpi (for OSX)
-pip3 install 'stable-baselines[mpi]'
-pip3 install tensorflow==1.15
-pip3 install gym
+conda env create -f env493a3.yml
+conda activate 493a3
+
+#clone and setup slime volley
+git clone https://github.com/hardmaru/slimevolleygym.git
+cd slimevolleygym
+pip3 install -e .
+
+#test
+python3 eval_agents.py --left ppo --right cma --render
 ```
 
 Note that tensorflow < 1.15 is needed for stable baselines as it does not support tensorflow 2.0 yet.
