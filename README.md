@@ -51,7 +51,7 @@ Please follow instructions [here](https://docs.anaconda.com/anaconda/install/)
 
 ```
 #clone the repo
-git clone https://github.com/hardmaru/slimevolleygym.git
+git clone https://git.uwaterloo.ca/mcrowley/ece493finalassignment.git
 cd slimevolleygym
 
 #setup and activate environment
