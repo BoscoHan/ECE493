@@ -45,7 +45,7 @@ We will look at your definition and implmentation which should match the descrip
 We have prepared for you a conda env file. The code use a specific version of python (3.7) and a specific version of TF (1.5) so a virtual environment is recommended. 
 
 ### Setup conda
-Please following instructions [here](https://docs.anaconda.com/anaconda/install/)
+Please follow instructions [here](https://docs.anaconda.com/anaconda/install/)
 
 ### Setup environment
 
