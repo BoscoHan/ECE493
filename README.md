@@ -42,29 +42,28 @@ We will look at your definition and implmentation which should match the descrip
 
 
 ## Installation (guide for Linux and OSX, for Windows please look online for instructions for the respective packages indicated here)
+We have prepared for you a conda env file. The code use a specific version of python (3.7) and a specific version of TF (1.5) so a virtual environment is recommended. 
 
-You need a version of python that is > 3.5 and < 3.8 installed in your machine. If you have other versions installed, you can have parallel installations, but use the python between 3.5 and 3.8.   
+### Setup conda
+Please following instructions [here](https://docs.anaconda.com/anaconda/install/)
 
-First clone the repo, 
+### Setup environment
 
 ```
+#clone the repo
+git clone https://github.com/hardmaru/slimevolleygym.git
+cd slimevolleygym
+
 #setup and activate environment
 sudo apt-get update && sudo apt-get install cmake libopenmpi-dev python3-dev zlib1g-dev (for ubuntu)
 brew install cmake openmpi (for OSX)
 conda env create -f env493a3.yml
 conda activate 493a3
-
-#clone and setup slime volley
-git clone https://github.com/hardmaru/slimevolleygym.git
-cd slimevolleygym
 pip3 install -e .
 
 #test
 python3 eval_agents.py --left ppo --right cma --render
 ```
-
-Note that tensorflow < 1.15 is needed for stable baselines as it does not support tensorflow 2.0 yet.
-
 After cloning and installing all the packages, you can run the ``test_state.py`` file to play the game manually against the baseline agent. You can use the arrow keys and you will control the right agent. 
 
 Note: Stable baselines is just a suggestion. There are other RL packages out with different deep learning libraries that can also be tried. 
