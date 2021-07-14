@@ -1,4 +1,4 @@
-# Slime Volleyball Gym Environment - Final Assignment
+# Slime Volleyball Gym Environment - Assignment 3
 
 Assignment code for course ECE 493 T25 at the University of Waterloo in Spring 2020.
 
