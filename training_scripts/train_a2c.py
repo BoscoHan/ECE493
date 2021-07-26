@@ -8,7 +8,7 @@ from stable_baselines.common.policies import MlpPolicy
 from stable_baselines import bench, logger, A2C
 from stable_baselines.common.callbacks import EvalCallback
 
-NUM_TIMESTEPS = int(150000)
+NUM_TIMESTEPS = int(1000000)
 SEED = 831
 EVAL_FREQ = 200000
 EVAL_EPISODES = 1000
@@ -37,7 +37,7 @@ def train():
   env = bench.Monitor(env, logger.get_dir() and os.path.join(logger.get_dir(), str(rank)))
   env.seed(workerseed)
 
-  model = A2C(MlpPolicy, env, gamma=0.99, vf_coef=0.25, learning_rate=0.005, verbose=1, alpha=0.99)
+  model = A2C(MlpPolicy, env, gamma=0.99, vf_coef=0.25, learning_rate=0.05, verbose=1, alpha=0.99)
   model.learn(total_timesteps=NUM_TIMESTEPS)
 
   env.close()
