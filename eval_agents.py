@@ -31,6 +31,9 @@ from slimevolleygym.mlp import makeSlimePolicy, makeSlimePolicyLite # simple pre
 from slimevolleygym import BaselinePolicy
 from time import sleep
 
+# debug
+from pdb import set_trace as bp
+
 #import cv2
 
 np.set_printoptions(threshold=20, precision=4, suppress=True, linewidth=200)
@@ -39,6 +42,20 @@ PPO1 = None # from stable_baselines import PPO1 (only load if needed.)
 class PPOPolicy:
   def __init__(self, path):
     self.model = PPO1.load(path)
+  def predict(self, obs):
+    action, state = self.model.predict(obs, deterministic=True)
+    return action
+
+class A2C:
+  def __init__(self, path):
+    self.model = A2C.load(path)
+  def predict(self, obs):
+    action, state = self.model.predict(obs, deterministic=True)
+    return action
+
+class TRPO:
+  def __init__(self, path):
+    self.model = TRPO.load(path)
   def predict(self, obs):
     action, state = self.model.predict(obs, deterministic=True)
     return action
@@ -86,7 +103,7 @@ def rollout(env, policy0, policy1, render_mode=False):
 
   return total_reward
 
-def evaluate_multiagent(env, policy0, policy1, render_mode=False, n_trials=1000, init_seed=721):
+def evaluate_multiagent(env, policy0, policy1, render_mode=False, n_trials=10, init_seed=721):
   history = []
   for i in range(n_trials):
     env.seed(seed=init_seed+i)
@@ -97,7 +114,7 @@ def evaluate_multiagent(env, policy0, policy1, render_mode=False, n_trials=1000,
 
 if __name__=="__main__":
 
-  APPROVED_MODELS = ["baseline", "ppo", "ga", "cma", "random"]
+  APPROVED_MODELS = ["baseline", "ppo", "ga", "cma", "random", "dqn", "a2c", "trpo"]
 
   def checkchoice(choice):
     choice = choice.lower()
@@ -111,6 +128,8 @@ if __name__=="__main__":
     "cma": "zoo/cmaes/slimevolley.cma.64.96.best.json",
     "ga": "zoo/ga_sp/ga.json",
     "random": None,
+    "a2c": "zoo/a2c/best_model.zip",
+    "trpo": "zoo/trpo/best_model.zip",
   }
 
   MODEL = {
@@ -119,6 +138,8 @@ if __name__=="__main__":
     "cma": makeSlimePolicy,
     "ga": makeSlimePolicyLite,
     "random": RandomPolicy,
+    "a2c": A2C,
+    "trpo": TRPO,
   }
 
   parser = argparse.ArgumentParser(description='Evaluate pre-trained agents against each other.')
@@ -130,7 +151,7 @@ if __name__=="__main__":
   parser.add_argument('--day', action='store_true', help='daytime colors?', default=False)
   parser.add_argument('--pixel', action='store_true', help='pixel rendering effect? (note: not pixel obs mode)', default=False)
   parser.add_argument('--seed', help='random seed (integer)', type=int, default=721)
-  parser.add_argument('--trials', help='number of trials (default 1000)', type=int, default=1000)
+  parser.add_argument('--trials', help='number of trials (default 1000)', type=int, default=50)
 
   args = parser.parse_args()
 
@@ -166,6 +187,12 @@ if __name__=="__main__":
 
   if c0.startswith("ppo") or c1.startswith("ppo"):
     from stable_baselines import PPO1
+
+  if c0.startswith("a2c") or c1.startswith("a2c"):
+    from stable_baselines import A2C
+
+  if c0.startswith("trpo") or c1.startswith("trpo"):
+    from stable_baselines import TRPO
 
   policy0 = MODEL[c0](path0) # the right agent
   policy1 = MODEL[c1](path1) # the left agent

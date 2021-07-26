@@ -13,7 +13,7 @@ from stable_baselines.common.policies import MlpPolicy
 from stable_baselines import logger
 from stable_baselines.common.callbacks import EvalCallback
 
-NUM_TIMESTEPS = int(2e7)
+NUM_TIMESTEPS = int(10000000)
 SEED = 721
 EVAL_FREQ = 250000
 EVAL_EPISODES = 1000
