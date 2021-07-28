@@ -4,18 +4,20 @@ import slimevolleygym
 
 from mpi4py import MPI
 from stable_baselines.common import set_global_seeds
-from stable_baselines.common.policies import MlpPolicy
+from stable_baselines.common.policies import MlpPolicy, CnnPolicy
+# from stable_baselines.deepq.policies import MlpPolicy, CnnPolicy
 from stable_baselines import bench, logger, A2C
 from stable_baselines.common.callbacks import EvalCallback
 
-NUM_TIMESTEPS = int(1000000)
+NUM_TIMESTEPS = int(5000000)
 SEED = 831
 EVAL_FREQ = 200000
 EVAL_EPISODES = 1000
 LOGDIR = "a2c_mpi"
 
 def make_env(seed):
-  env = gym.make("SlimeVolley-v0")
+#   env = gym.make("SlimeVolley-v0")
+  env = gym.make("SlimeVolleyNoFrameskip-v0")
   env.seed(seed)
   return env
 
@@ -37,7 +39,7 @@ def train():
   env = bench.Monitor(env, logger.get_dir() and os.path.join(logger.get_dir(), str(rank)))
   env.seed(workerseed)
 
-  model = A2C(MlpPolicy, env, gamma=0.99, vf_coef=0.25, learning_rate=0.05, verbose=1, alpha=0.99)
+  model = A2C(CnnPolicy, env, gamma=0.99, learning_rate=0.001, verbose=1, lr_schedule='constant')
   model.learn(total_timesteps=NUM_TIMESTEPS)
 
   env.close()

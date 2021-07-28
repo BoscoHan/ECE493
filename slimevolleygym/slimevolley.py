@@ -11,6 +11,7 @@ https://github.com/hardmaru/neuralslimevolley
 
 No dependencies apart from Numpy and Gym
 """
+from pdb import set_trace as bp
 
 import logging
 import math
@@ -369,6 +370,7 @@ class Agent:
   def lives(self):
     return self.life
   def setAction(self, action):
+    # bp()
     forward = False
     backward = False
     jump = False
@@ -772,7 +774,6 @@ class SlimeVolleyEnv(gym.Env):
     """
     done = False
     self.t += 1
-
     if self.otherAction is not None:
       otherAction = self.otherAction
 
@@ -785,6 +786,7 @@ class SlimeVolleyEnv(gym.Env):
       obs = self.game.agent_left.getObservation()
       otherAction = self.policy.predict(obs)
     self.game.agent_left.setAction(otherAction)
+    # bp()
     self.game.agent_right.setAction(action) # external agent is agent_right
 
     reward = self.game.step()
@@ -949,7 +951,7 @@ def multiagent_rollout(env, policy_right, policy_left, render_mode=False):
   t = 0
 
   while not done:
-
+    # bp()
     action_right = policy_right.predict(obs_right)
     action_left = policy_left.predict(obs_left)
 

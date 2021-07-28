@@ -60,6 +60,16 @@ class TRPO:
     action, state = self.model.predict(obs, deterministic=True)
     return action
 
+class DQN:
+  def __init__(self, path):
+    self.model = DQN.load(path)
+  def predict(self, obs):
+    action, state = self.model.predict(obs, deterministic=True)
+
+    action_arr = np.array([0, 0, 0])
+    action_arr[action % env.action_space.n] = action
+    return action_arr
+
 class RandomPolicy:
   def __init__(self, path):
     self.action_space = gym.spaces.MultiBinary(3)
@@ -83,7 +93,7 @@ def rollout(env, policy0, policy1, render_mode=False):
 
     action0 = policy0.predict(obs0)
     action1 = policy1.predict(obs1)
-
+    # bp()
     # uses a 2nd (optional) parameter for step to put in the other action
     # and returns the other observation in the 4th optional "info" param in gym's step()
     obs0, reward, done, info = env.step(action0, action1)
@@ -130,6 +140,7 @@ if __name__=="__main__":
     "random": None,
     "a2c": "zoo/a2c/best_model.zip",
     "trpo": "zoo/trpo/best_model.zip",
+    "dqn": "zoo/dqn/best_model.zip"
   }
 
   MODEL = {
@@ -140,6 +151,7 @@ if __name__=="__main__":
     "random": RandomPolicy,
     "a2c": A2C,
     "trpo": TRPO,
+    "dqn": DQN,
   }
 
   parser = argparse.ArgumentParser(description='Evaluate pre-trained agents against each other.')
@@ -193,6 +205,9 @@ if __name__=="__main__":
 
   if c0.startswith("trpo") or c1.startswith("trpo"):
     from stable_baselines import TRPO
+
+  if c0.startswith("dqn") or c1.startswith("dqn"):
+    from stable_baselines import DQN
 
   policy0 = MODEL[c0](path0) # the right agent
   policy1 = MODEL[c1](path1) # the left agent
