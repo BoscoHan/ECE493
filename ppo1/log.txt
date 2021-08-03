@@ -1,0 +1,2 @@
+Logging to ppo1
+********** Iteration 0 ************

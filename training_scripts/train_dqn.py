@@ -47,9 +47,7 @@ env = gym.make("SlimeVolleyNoFrameskip-v0")
 # env = MultiBinaryAsDiscreteAction(env)
 env.seed(SEED)
     
-
 # # use discreate action space
-# # self.action_space = spaces.Box(0, 1.0, shape=(3,))
 model = DQN(CnnPolicy, env, gamma=0.99, learning_rate=0.0008, exploration_fraction=0.1, train_freq=4, batch_size=32, double_q=True, target_network_update_freq=1000, verbose=1)
 
 model.learn(total_timesteps=NUM_TIMESTEPS)
